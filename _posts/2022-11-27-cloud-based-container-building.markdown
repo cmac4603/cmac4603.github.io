@@ -31,10 +31,7 @@ use instance roles instead):
 kubectl create secret generic aws-secret --from-file=~/.aws/credentials
 ```
 
-Running the pod definition:
-```bash
-kubectl apply -f kaniko.yml
-```
+With the following k8s pod file:
 ```yaml
 apiVersion: v1
 kind: Pod
@@ -61,8 +58,13 @@ spec:
     - name: aws-secret
       secret:
         secretName: aws-secret
-
 ```
+
+Running the pod definition:
+```bash
+kubectl apply -f kaniko.yml
+```
+
 
 What I've referenced above is the [`handlebars`](https://handlebarsjs.com/) template I've used to
 get this to work (the reason being `handlebars` is a supported templating engine in the
